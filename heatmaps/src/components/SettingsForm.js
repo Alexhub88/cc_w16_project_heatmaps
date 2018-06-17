@@ -8,16 +8,16 @@ class SettingsForm extends React.Component {
     this.enterLongitude  = this.enterLongitude.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      layer: '',
-      latitude: 0.0,
-      longitude: 0.0,
+      layer: 'earthquake',
+      latitude: 57.4,
+      longitude: 98.5,
 
     };
   }
 
  enterLayer(event) {
    this.setState({layer: event.target.value});
- } 
+ }
 
   enterLatitude(event) {
     this.setState({latitude: event.target.value});
@@ -30,11 +30,15 @@ class SettingsForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     var layer = this.state.layer.trim();
-    var latitude = this.state.latitude.trim();
-    var longitude = this.state.longitude.trim();
+    var latitude = this.state.latitude;
+    var longitude = this.state.longitude;
     if (!layer || !latitude || !longitude) {
       return;
     }
+    console.log(this.state.layer);
+    console.log(this.state.latitude);
+    console.log(this.state.longitude);
+    
     this.props.onSettingsSubmit({layer: layer, latitude: latitude, longitude: longitude});
     this.setState({layer: '', latitude: 0.0, longitude: 0.0});
   }
