@@ -1,27 +1,32 @@
 import React from 'react'
-import {GoogleApiWrapper} from 'google-maps-react';
 // import cities from 'cities.json';
-import Map from '../components/Map.js'
-// import GoogleApi from '../components/GoogleApi.js'
-
 
 class MapContainer extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      data: [{id:1, layer: '', latitude: 0.0, longitude: 0.0}]
-    }
 
+     this.createContainer = this.createContainer.bind(this)
+     this.createContainer()
      this.mapSetUp = this.mapSetUp.bind(this)
      this.mapSetUp()
+     this.render = this.render.bind(this)
+     this.render()
 
+  }
+
+  createContainer() {
+    const bodyElement = document.querySelector('body');
+    bodyElement.innerHTML = '';
+    const map = document.createElement('div');
+    map.id = 'map'
+    bodyElement.appendChild(map);
+    const button = document.createElement('button');
+    bodyElement.appendChild(button);
   }
 
   mapSetUp(){
     var GoogleMapsLoader = require('google-maps'); // only for common js environments
-
     GoogleMapsLoader.KEY = 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo'
-
     GoogleMapsLoader.load(function(google) {
         new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
@@ -36,7 +41,7 @@ class MapContainer extends React.Component {
   }
     render () {
       return (
-        <div id="map" style={{width: 500, height: 500}}></div>
+        <div id="map" ></div>
         // <div>
         //   <Map
         //     google={this.state.data}/>

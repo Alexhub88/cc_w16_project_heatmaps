@@ -10,32 +10,24 @@ class HeatMapContainer extends React.Component {
     }
 
      this.handleHeatMapSelected = this.handleHeatMapSelected.bind(this)
+
   }
 
   handleHeatMapSelected(spec) {
     spec.id = Date.now();
     this.setState({data: spec})
-    // this.renderMapView(this.state.data)
+    const mapContainer = new MapContainer();
+    mapContainer.createContainer();
+    mapContainer.mapSetUp();
+    mapContainer.render();
   }
-
-  // renderMapView(data) {
-  //   render () {
-  //     return (
-  //       <div>
-  //         <MapContainer
-  //           google={this.state.data}/>
-  //       </div>
-  //     )}
-  // }
 
   render() {
     return (
-      <div>
+      <div className="form">
         <SettingsForm
           onSettingsSubmit={this.handleHeatMapSelected}
         />
-        <MapContainer
-          google={this.state.data}/>
       </div>
 
   )}
