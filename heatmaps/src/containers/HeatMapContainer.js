@@ -6,20 +6,23 @@ class HeatMapContainer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      data: [{id:1, layer: '', latitude: 0.0, longitude: 0.0}]
-    }
-
+      data: {
+      layer: '',
+      latitude: 0.0,
+      longitude: 0.0}
+    };
      this.handleHeatMapSelected = this.handleHeatMapSelected.bind(this)
-
   }
 
   handleHeatMapSelected(spec) {
-    spec.id = Date.now();
-    this.setState({data: spec})
-    const mapContainer = new MapContainer();
-    mapContainer.createContainer();
-    mapContainer.mapSetUp();
-    mapContainer.render();
+
+    this.setState({data: spec}, () => {
+      const mapContainer = new MapContainer();
+      mapContainer.createContainer();
+      var latitude = this.state.data.latitude;
+      var longitude = this.state.data.longitude;
+      mapContainer.mapSetUp(latitude, longitude);
+      mapContainer.render()});
   }
 
   render() {

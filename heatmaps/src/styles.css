@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: yellow;
 }
 
 .App {
@@ -16,13 +17,25 @@ body {
   font-family: sans-serif;
 }
 
-#input{
-  font-family: 'Times New Roman';
-}
+
 
 #map {
-  width: 300px;
-  height: 300px;
-  border: 5px;
   margin: auto;
+  height: 200px;
+  width: 200px;
+  border: 5px solid green;
+  padding: 30px 30px;
+  position: relative;
+  top: -20%;
+  transform: translateY(20%);
+}
+
+#button {
+  height: 50px;
+  width: 100px;
+  border: 3px solid blue;
+  position: absolute;
+  right: 520px;
+  top: 400px;
+  font-family: 'Times New Roman';
 }

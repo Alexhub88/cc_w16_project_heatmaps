@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import HeatMapContainer from './containers/HeatMapContainer.js'
+import SettingsForm from './components/SettingsForm.js'
 import './styles.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-          <HeatMapContainer />
+        <SettingsForm />
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import MapContainer from '../containers/MapContainer.js'
 
 class SettingsForm extends React.Component {
   constructor(props) {
@@ -35,12 +36,12 @@ class SettingsForm extends React.Component {
     if (!layer || !latitude || !longitude) {
       return;
     }
-    console.log(this.state.layer);
-    console.log(this.state.latitude);
-    console.log(this.state.longitude);
-    
-    this.props.onSettingsSubmit({layer: layer, latitude: latitude, longitude: longitude});
-    this.setState({layer: '', latitude: 0.0, longitude: 0.0});
+
+    const mapContainer = new MapContainer();
+    mapContainer.createContainer();
+    mapContainer.mapSetUp(latitude,longitude);
+    mapContainer.render();
+
   }
 
   render() {
