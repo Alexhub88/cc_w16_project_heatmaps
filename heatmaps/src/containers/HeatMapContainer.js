@@ -11,10 +11,10 @@ class HeatMapContainer extends React.Component {
       latitude: 0.0,
       longitude: 0.0}
     };
-     this.handleHeatMapSelected = this.handleHeatMapSelected.bind(this)
+    this.handleHeatMapSelected = this.handleHeatMapSelected.bind(this)
   }
 
-  handleHeatMapSelected(spec) {
+  handleHeatMapSelected() {
 
     this.setState({data: spec}, () => {
       const mapContainer = new MapContainer();
@@ -27,7 +27,7 @@ class HeatMapContainer extends React.Component {
 
   render() {
     return (
-      <div className="form">
+      <div className="settings">
         <SettingsForm
           onSettingsSubmit={this.handleHeatMapSelected}
         />

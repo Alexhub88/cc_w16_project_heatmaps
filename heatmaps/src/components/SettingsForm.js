@@ -46,27 +46,48 @@ class SettingsForm extends React.Component {
 
   render() {
      return (
-       <form className="settingsForm" onSubmit={this.handleSubmit}>
+       <div>
+         <h1>HeatMap User Interface</h1>
+         <h2>Enter HeatMap Layer Required, Latitude and Longitude:</h2>
+       <form id="settingsForm" onSubmit={this.handleSubmit}>
+         <label id="heatMapLayer">HeatMap Layer:</label>
+          <select
+               id="heatMapLayer"
+               name="heatMapLayer"
+               type="text"
+               placeholder="HeatMap Layer Required">
+               <option value="earthquake">Earthquake</option>
+               <option value="temperature">Temperature</option>
+               <option value="transport">Transport</option>
+               <option value="transit">Transit</option>
+               <option value="Cycle">Cycle</option>
+           </select>
+       <label id="lat-coord">Latitude:</label>
          <input
-           type="text"
-           placeholder="HeatMap Layer Required"
-           value={this.state.layer}
-           onChange={this.enterLayer}
-         />
-         <input
+           id="lat-coord"
            type="number"
            placeholder="Latitude"
            value={this.state.latitude}
            onChange={this.enterLatitude}
          />
+       <label id="lng-coord">Longitude:</label>
          <input
+           id="lng-coord"
            type="number"
            placeholder="Longitude"
            value={this.state.longitude}
            onChange={this.enterLongitude}
          />
-         <input type="submit" value="Post" />
+        <div>
+          <label id="input-button"></label>
+          <input type="submit" id ="input-button" value="Enter Coordinates" />
+        </div>
+
+        <p id ="ranges"> Precede South latitudes and West longitudes with a minus sign.
+            Latitudes range from -90 to 90.
+            Longitudes range from -180 to 180.</p>          
        </form>
+       </div>
      )
    }
 }
