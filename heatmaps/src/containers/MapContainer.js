@@ -1,5 +1,7 @@
 import React from 'react'
 import SettingsForm from '../components/SettingsForm.js'
+var GoogleMapsLoader = require('google-maps');
+GoogleMapsLoader.KEY = 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo';
 // import cities from 'cities.json';
 
 class MapContainer extends React.Component {
@@ -22,6 +24,9 @@ class MapContainer extends React.Component {
     const map = document.createElement('div');
     map.id = 'map'
     bodyElement.appendChild(map);
+    const temp = document.createElement('div');
+    temp.id = 'temp'
+    bodyElement.appendChild(temp);
     const button = document.createElement('button');
     button.id = 'return-button'
     button.textContent = 'Return to Entry Screen'
@@ -31,26 +36,35 @@ class MapContainer extends React.Component {
 
   mapSetUp(latitude,longitude){
 
-    var GoogleMapsLoader = require('google-maps');
-    GoogleMapsLoader.KEY = 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo';
     GoogleMapsLoader.load(function(google) {
-       const map = new google.maps.Map(document.getElementById('map'), {
+       const mapOptions = {
           zoom: 4,
           mapTypeControl: true,
           mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-            mapTypeIds: ['roadmap', 'terrain']
-          }
-        });
-        map.setCenter({lat: parseFloat(latitude), lng: parseFloat(longitude)});
+          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+          mapTypeIds: ['roadmap', 'terrain']
+       }};
+
+       const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+       map.setCenter({lat: parseFloat(latitude), lng: parseFloat(longitude)});
+
+       const temp = new google.maps.Map(document.getElementById('temp'), mapOptions);
+       temp.setCenter({lat: parseFloat(latitude), lng: parseFloat(longitude)});
+
+       var trafficLayer = new google.maps.TrafficLayer();
+       trafficLayer.setMap(null);
+       trafficLayer.setMap(map);
     });
+
   }
 
     render () {
       return (
         <div className = "map-tile">
           <div id="map" ></div>
+          <div id="temp" ></div>
         </div>
+
     )}
 
 }
