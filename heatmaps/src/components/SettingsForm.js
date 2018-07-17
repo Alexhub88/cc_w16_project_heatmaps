@@ -1,5 +1,4 @@
 import React from 'react';
-import MapContainer from '../containers/MapContainer.js'
 
 class SettingsForm extends React.Component {
   constructor(props) {
@@ -12,13 +11,12 @@ class SettingsForm extends React.Component {
       layer: 'earthquake',
       latitude: 57.4,
       longitude: 98.5,
-
     };
   }
 
- enterLayer(event) {
-   this.setState({layer: event.target.value});
- }
+  enterLayer(event) {
+    this.setState({layer: event.target.value});
+  }
 
   enterLatitude(event) {
     this.setState({latitude: event.target.value});
@@ -36,12 +34,7 @@ class SettingsForm extends React.Component {
     if (!layer || !latitude || !longitude) {
       return;
     }
-
-    const mapContainer = new MapContainer();
-    mapContainer.createContainer();
-    mapContainer.mapSetUp(latitude,longitude);
-    mapContainer.render();
-
+    this.props.onParamSubmit({layer: layer, latitude: latitude, longitude: longitude});
   }
 
   render() {
@@ -60,7 +53,7 @@ class SettingsForm extends React.Component {
                <option value="temperature">Temperature</option>
                <option value="transport">Transport</option>
                <option value="transit">Transit</option>
-               <option value="Cycle">Cycle</option>
+             <option value="cycle">Cycle</option>
            </select>
        <label id="lat-coord">Latitude:</label>
          <input
@@ -78,15 +71,15 @@ class SettingsForm extends React.Component {
            value={this.state.longitude}
            onChange={this.enterLongitude}
          />
-        <div>
-          <label id="input-button"></label>
-          <input type="submit" id ="input-button" value="Enter Coordinates" />
-        </div>
-
         <p id ="ranges"> Precede South latitudes and West longitudes with a minus sign.
             Latitudes range from -90 to 90.
-            Longitudes range from -180 to 180.</p>          
-       </form>
+            Longitudes range from -180 to 180.</p>
+            <div>
+              <label id="input-button"></label>
+              <input type="submit" id ="input-button" value="Enter Coordinates" />
+            </div>
+        <br></br>
+        </form>
        </div>
      )
    }
